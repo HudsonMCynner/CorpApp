@@ -1,4 +1,4 @@
-# Quasar App (tagnos-ead)
+# Quasar App (Corp App)
 
 A Quasar Framework app
 
