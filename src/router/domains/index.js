@@ -1,7 +1,7 @@
-import aluno from './aluno'
+import usuario from './usuario'
 import administrador from './administrador'
 
 export default [
-  ...aluno,
+  ...usuario,
   ...administrador
 ]

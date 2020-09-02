@@ -25,12 +25,14 @@ export default {
   pessoa: {
     nome: 'Nome Completo',
     email: 'E-Mail',
+    cpf: 'CPF',
     telefone: 'Telefone',
     nascimento: 'Nascimento'
   },
   perfil: {
     nick: 'Nick',
     senha: 'Senha',
-    steamId: 'ID da Steam'
+    steamId: 'ID da Steam',
+    tipoAcesso: 'Tipo de Acesso'
   }
 }

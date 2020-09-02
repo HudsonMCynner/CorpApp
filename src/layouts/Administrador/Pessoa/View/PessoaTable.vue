@@ -23,9 +23,9 @@
 <script>
 import AppTableCard from 'components/AppTableCard'
 import table from 'src/Mixins/table'
-import AlunoService from 'layouts/administrador/Aluno/Service/AlunoService'
 import AppTable from 'src/components/AppTable'
 import $store from 'src/store'
+import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaService'
 
 export default {
   name: 'AlunoTable',
@@ -35,7 +35,7 @@ export default {
   },
   mixins: [table],
   data: () => ({
-    service: AlunoService.instance(),
+    service: PessoaService.instance(),
     name: 'admin-aluno-view',
     searchable: {
       'usuario.clientes.id': $store.getters['auth/getCliente'].id

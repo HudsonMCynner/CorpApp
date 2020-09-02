@@ -11,7 +11,6 @@
  ***********************************************
  */
 import Rest from 'src/app/Services/Rest'
-import { authorizationMiddleware } from 'src/config/service/standard'
 // import { encrypt } from 'src/util/Crypto'
 
 /**
@@ -19,14 +18,12 @@ import { authorizationMiddleware } from 'src/config/service/standard'
  */
 export default class LoginService extends Rest {
   /**
-   * @param {Object} credentials (Login e Senha)
+   * @param {Object} login (Login e Senha)
    * @returns (*)
    *
    */
-  login ({ login, senha }) {
-    // return this.post('/auth', { login, senha: encrypt(senha) })
-    return this.post('/auth', { login, senha })
-      .then(authorizationMiddleware)
+  login (login) {
+    return this.post('/pessoas/auth', login)
   }
 
   /**

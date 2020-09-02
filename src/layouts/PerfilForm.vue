@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 q-pa-sm">
               <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <q-input
                     ref="nome"
                     :placeholder="$t('domains.dashboard.pessoa.nome')"
@@ -18,11 +18,32 @@
                     </template>
                   </q-input>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <q-input
+                    ref="cpf"
+                    :placeholder="$t('domains.dashboard.pessoa.cpf')"
+                    v-model="pessoa.cpf"
+                    mask="###.###.###-##"
+                    outlined
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="person" />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+                  <app-date
+                    :label="$t('domains.dashboard.pessoa.nascimento')"
+                    :rules="getRules"
                     ref="nascimento"
-                    :placeholder="$t('domains.dashboard.pessoa.nascimento')"
                     v-model="pessoa.nascimento"
+                  />
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+                  <q-input
+                    ref="email"
+                    :placeholder="$t('domains.dashboard.pessoa.email')"
+                    v-model="pessoa.email"
                     outlined
                   >
                     <template v-slot:prepend>
@@ -42,32 +63,6 @@
             </div>
           </div>
           <div class="row q-pa-sm">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-input
-                ref="cpf"
-                :placeholder="$t('domains.dashboard.perfil.senha')"
-                v-model="pessoa.perfil.senha"
-                mask="###.###.###-##"
-                outlined
-              >
-                <template v-slot:prepend>
-                  <q-icon name="person" />
-                </template>
-              </q-input>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-input
-                ref="email"
-                :placeholder="$t('domains.dashboard.pessoa.email')"
-                v-model="pessoa.email"
-                mask="###.###.###-##"
-                outlined
-              >
-                <template v-slot:prepend>
-                  <q-icon name="person" />
-                </template>
-              </q-input>
-            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
               <q-input
                 ref="nick"
@@ -92,19 +87,19 @@
                 </template>
               </q-input>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
              <app-upload
                label="Config 3"
                v-model="pessoa.perfil.cfg1"
              ></app-upload>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
              <app-upload
                label="Config 3"
                v-model="pessoa.perfil.cfg2"
              ></app-upload>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
              <app-upload
                label="Config 3"
                v-model="pessoa.perfil.cfg3"
@@ -113,7 +108,7 @@
           </div>
           <div class="row q-pa-sm">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-btn color="primary" icon-right="keyboard_arrow_right" label="Acessar"/>
+              <q-btn color="primary" label="Salvar"/>
             </div>
           </div>
         </q-card-section>
@@ -124,6 +119,7 @@
 <script>
 
 import AppUpload from 'src/components/Upload/AppUpload'
+import { date } from 'quasar'
 export default {
   name: 'PerfilForm',
   components: { AppUpload },
@@ -152,6 +148,14 @@ export default {
     },
     voltar () {
       this.$emit('back')
+    }
+  },
+  computed: {
+    getRules () {
+      return [
+        (nascimento) => !!nascimento || this.$t('domains.validations.required'),
+        (nascimento) => date.isValid(nascimento.split('/').reverse().join('-')) || this.$t('domains.validations.dataInvalida')
+      ]
     }
   }
 }

@@ -13,9 +13,9 @@
 import Rest from 'src/app/Services/Rest'
 
 /**
- * @type {AlunoService}
+ * @type {PessoaService}
  */
-export default class AlunoService extends Rest {
+export default class PessoaService extends Rest {
   /**
    * @type {string}
    */

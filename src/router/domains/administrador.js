@@ -1,16 +1,16 @@
 export default [
   {
     path: '/admin/dashboard',
-    component: () => import('layouts/administrador/Dashboard/Dashboard')
+    component: () => import('layouts/Administrador/Dashboard/Dashboard')
   },
   {
-    name: 'admin-aluno-index',
-    path: '/admin/aluno/index',
-    component: () => import('layouts/administrador/Aluno/View/AlunoTable')
+    name: 'admin-pessoa-index',
+    path: '/admin/pessoa/index',
+    component: () => import('layouts/Administrador/Pessoa/View/PessoaTable')
   },
   {
-    name: 'admin-aluno-view',
-    path: '/admin/aluno/view',
-    component: () => import('layouts/administrador/Aluno/View/AlunoForm')
+    name: 'admin-pessoa-view',
+    path: '/admin/pessoa/view',
+    component: () => import('layouts/administrador/Pessoa/View/PessoaForm')
   }
 ]

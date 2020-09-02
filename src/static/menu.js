@@ -1,5 +1,5 @@
 export default {
-  professor: [
+  usuario: [
     {
       title: 'Início',
       icon: 'dashboard',
@@ -13,8 +13,8 @@ export default {
       to: '/admin/dashboard'
     },
     {
-      title: 'Alunos',
-      icon: 'school',
+      title: 'Pessoas',
+      icon: 'people',
       to: '/admin/aluno/index'
     }
   ]

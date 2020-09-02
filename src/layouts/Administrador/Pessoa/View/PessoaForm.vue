@@ -94,11 +94,11 @@
 <script>
 import AppFormCard from 'components/AppFormCard'
 import form from 'src/Mixins/form'
-import AlunoService from 'layouts/administrador/Aluno/Service/AlunoService'
 import AppInput from 'components/AppInput'
 import AppSection from 'components/AppSection'
 import AppDate from 'components/AppDate'
 import { date } from 'quasar'
+import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaService'
 
 export default {
   name: 'AlunoForm',
@@ -112,7 +112,7 @@ export default {
   data: () => ({
     scope: 'add',
     name: 'admin-aluno-index',
-    service: AlunoService.instance(),
+    service: PessoaService.instance(),
     excludeValidation: ['qDateProxy'],
     record: {
       nome: null,

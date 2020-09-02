@@ -6,20 +6,11 @@
         <login-form></login-form>
       </q-page-container>
     </q-page>
-    <q-footer>
-      <div style="display: flex;flex-direction: row; cursor:pointer;" v-if="!login" @click="login = true">
-        <q-icon name="engineering" style="font-size: 4rem;"/>
-        <div style="display: flex; flex-direction: column; margin: 0 0 0 10px">
-          <span style="font-size: 16px">Acesso</span>
-          <span style="font-size: 20px">Administrador</span>
-        </div>
-      </div>
-    </q-footer>
 </q-layout>
 </template>
 
 <script>
-import LoginForm from 'src/pages/Autenticacao/Login/View/LoginForm'
+import LoginForm from 'src/layouts/Autenticacao/Login/View/LoginForm'
 export default {
   name: 'Login',
   beforeCreate () {
