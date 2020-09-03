@@ -15,7 +15,12 @@ export default {
     {
       title: 'Pessoas',
       icon: 'people',
-      to: '/admin/aluno/index'
+      to: '/admin/pessoa/index'
+    },
+    {
+      title: 'Perfil',
+      icon: 'people',
+      to: '/admin/perfil/view'
     }
   ]
 }

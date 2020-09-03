@@ -12,5 +12,10 @@ export default [
     name: 'admin-pessoa-view',
     path: '/admin/pessoa/view',
     component: () => import('layouts/administrador/Pessoa/View/PessoaForm')
+  },
+  {
+    name: 'admin-perfil-view',
+    path: '/admin/perfil/view',
+    component: () => import('layouts/PerfilForm')
   }
 ]

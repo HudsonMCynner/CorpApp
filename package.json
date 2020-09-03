@@ -1,11 +1,12 @@
 {
   "name": "tagnos-ead",
   "version": "0.0.1",
-  "description": "Tagnos EAD",
-  "productName": "Tagnos EAD",
+  "description": "",
+  "productName": "Corp",
   "author": "",
   "private": true,
   "scripts": {
+    "build" : "quasar build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },

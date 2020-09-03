@@ -21,7 +21,7 @@ const routes = [
     component: () => import('layouts/Login.vue')
   },
   {
-    path: '/perfil',
+    path: '/novo-cadastro',
     component: () => import('layouts/PerfilForm')
   },
   {

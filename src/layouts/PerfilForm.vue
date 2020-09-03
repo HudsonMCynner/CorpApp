@@ -1,5 +1,5 @@
 <template>
-  <div class="card-wrapper" style="padding: 25px; height: 100%;">
+  <div style="padding: 25px; height: 100%;">
     <q-card style="    border: 1px solid rgb(189, 189, 189);
     border-radius: 15px;">
         <q-card-section>
@@ -9,6 +9,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <q-input
                     ref="nome"
+                    :readonly="readonly"
+                    :disable="disable"
                     :placeholder="$t('domains.dashboard.pessoa.nome')"
                     v-model="pessoa.nome"
                     outlined
@@ -20,6 +22,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <q-input
+                    :readonly="readonly"
+                    :disable="disable"
                     ref="cpf"
                     :placeholder="$t('domains.dashboard.pessoa.cpf')"
                     v-model="pessoa.cpf"
@@ -33,6 +37,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <app-date
+                    :readonly="readonly"
+                    :disable="disable"
                     :label="$t('domains.dashboard.pessoa.nascimento')"
                     :rules="getRules"
                     ref="nascimento"
@@ -41,6 +47,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <q-input
+                    :readonly="readonly"
+                    :disable="disable"
                     ref="email"
                     :placeholder="$t('domains.dashboard.pessoa.email')"
                     v-model="pessoa.email"
@@ -65,6 +73,8 @@
           <div class="row q-pa-sm">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
               <q-input
+                :readonly="readonly"
+                :disable="disable"
                 ref="nick"
                 :placeholder="$t('domains.dashboard.perfil.nick')"
                 v-model="pessoa.perfil.nick"
@@ -77,6 +87,8 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
               <q-input
+                :readonly="readonly"
+                :disable="disable"
                 ref="steamId"
                 :placeholder="$t('domains.dashboard.perfil.steamId')"
                 v-model="pessoa.perfil.steamId"
@@ -89,18 +101,24 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
              <app-upload
-               label="Config 3"
+               :readonly="readonly"
+               :disable="disable"
+               label="Config 1"
                v-model="pessoa.perfil.cfg1"
              ></app-upload>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
              <app-upload
-               label="Config 3"
+               :readonly="readonly"
+               :disable="disable"
+               label="Config 2"
                v-model="pessoa.perfil.cfg2"
              ></app-upload>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
              <app-upload
+               :readonly="readonly"
+               :disable="disable"
                label="Config 3"
                v-model="pessoa.perfil.cfg3"
              ></app-upload>
@@ -124,8 +142,17 @@ export default {
   name: 'PerfilForm',
   components: { AppUpload },
   created () {
+    const usuario = this.$store.getters['auth/getUsuario']
+    if (usuario) {
+      debugger
+      this.pessoa = usuario
+      this.readonly = true
+      this.disable = true
+    }
   },
   data: () => ({
+    readonly: false,
+    disable: false,
     pessoa: {
       nome: '',
       email: '',
@@ -166,9 +193,4 @@ export default {
   rel="stylesheet/stylus"
   scoped
 >
-.card-wrapper
-  /*height 100vh*/
-  background-image url("~assets/back.jpg")
-  background-repeat no-repeat
-  background-size cover
 </style>

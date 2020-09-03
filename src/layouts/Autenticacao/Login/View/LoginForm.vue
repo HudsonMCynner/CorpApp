@@ -1,19 +1,11 @@
 <template>
   <div class="row justify-center row-container">
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="position: relative" >
-      <q-btn
-        color="primary"
-        class="btn-back"
-        round
-        dense
-        icon="keyboard_arrow_left"
-        @click="voltar"/>
-      <q-card class="cards card-images card-aluno text-white" style="padding: 30px 20px 20px 20px;  background: radial-gradient(circle, rgb(214 119 89) 0%, #682314 100%);">
+      <q-card class="cards text-white" style="padding: 30px 20px 20px 20px;  background: radial-gradient(circle, rgb(214 119 89) 0%, #682314 100%);">
         <q-card-section>
           <div class="text-h6">CORP</div>
         </q-card-section>
-        <q-card-section style="position: relative;     padding: 15px 0px 0px 15px;
-    background: white;border-radius: 10px;">
+        <q-card-section style="position: relative; padding: 15px 0px 0px 15px;  background: white;border-radius: 10px;">
           <div class="row" style="margin-right: 16px;">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
               <q-input
@@ -41,8 +33,9 @@
                 </template>
               </q-input>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-btn color="primary" icon-right="keyboard_arrow_right" label="Acessar" @click="entrar"/>
+            <div class="actions">
+              <q-btn color="primary" label="Acessar" @click="entrar"/>
+              <q-btn color="primary" label="Caadastrar" @click="cadastrar"/>
             </div>
           </div>
         </q-card-section>
@@ -79,6 +72,9 @@ export default {
     voltar () {
       this.clientes = false
       this.$emit('back')
+    },
+    cadastrar () {
+      this.$router.push('/novo-cadastro')
     }
   }
 }
@@ -108,7 +104,6 @@ export default {
   border-radius: 20px;
   padding: 0;
   text-align: center;
-  cursor: pointer;
 .q-table__container
   height 100%
   border-radius 10px
@@ -122,4 +117,12 @@ export default {
   top: 23px;
   left: 23px;
   z-index: 1;
+
+.actions
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 106px;
+  padding: 10px 20%;
 </style>
