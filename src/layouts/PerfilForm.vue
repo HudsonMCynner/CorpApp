@@ -65,9 +65,10 @@
     justify-content: center;
     align-items: center;
     padding: 15px 15px;">
-              <div style="width: 100%; height: 100%; border: 1px solid;">
-                Foto
-              </div>
+              <app-camera
+                v-model="pessoa.perfil.foto"
+                :roudend="false"
+              ></app-camera>
             </div>
           </div>
           <div class="row q-pa-sm">
@@ -138,13 +139,13 @@
 
 import AppUpload from 'src/components/Upload/AppUpload'
 import { date } from 'quasar'
+import AppCamera from 'src/components/AppCamera'
 export default {
   name: 'PerfilForm',
-  components: { AppUpload },
+  components: { AppCamera, AppUpload },
   created () {
     const usuario = this.$store.getters['auth/getUsuario']
     if (usuario) {
-      debugger
       this.pessoa = usuario
       this.readonly = true
       this.disable = true

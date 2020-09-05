@@ -24,3 +24,6 @@ export { default as AppHtml } from './AppHtml'
 
 /** @typedef AppHtml */
 export { default as AppListCheckBox } from './AppListCheckBox'
+
+/** @typedef AppHtml */
+export { default as AppCamera } from './AppCamera'

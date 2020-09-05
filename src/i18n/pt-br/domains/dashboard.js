@@ -34,5 +34,20 @@ export default {
     senha: 'Senha',
     steamId: 'ID da Steam',
     tipoAcesso: 'Tipo de Acesso'
+  },
+  components: {
+    appCamera: {
+      action: {
+        usarCamera: 'Usar Câmera',
+        tirarFoto: 'Tirar Foto',
+        fecharCamera: 'Fechar',
+        carregarFoto: 'Carregar Foto',
+        excluirFoto: 'Excluir Foto'
+      },
+      messages: {
+        erroCarregarArquivo: 'Erro ao carregar arquivo',
+        arquivosPermitidos: 'O tipo de arquivo não é permitido'
+      }
+    }
   }
 }
