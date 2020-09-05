@@ -95,19 +95,17 @@ export default {
     },
     getMenuPorTipoAcesso () {
       const usuario = this.$store.getters['auth/getUsuario']
-      const tipo = usuario.tipo
+      const tipo = usuario.tipoAcesso
       const tipoAcesso = {
-        0: 'administrador',
-        1: 'professor',
-        2: 'aluno',
-        3: 'responsavel'
+        ADM: 'administrador',
+        USUARIO: 'usuario'
       }
       if (tipoAcesso[tipo]) {
         this.essentialLinks = menus[tipoAcesso[tipo]]
         this.openDashboard(this.essentialLinks)
         return
       }
-      this.essentialLinks = menus[tipoAcesso[0]]
+      this.essentialLinks = menus[usuario.tipoAcesso]
     }
   },
   computed: {

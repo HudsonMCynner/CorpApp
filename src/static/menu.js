@@ -3,7 +3,7 @@ export default {
     {
       title: 'Início',
       icon: 'dashboard',
-      to: '/professor/dashboard'
+      to: '/usuario/dashboard'
     }
   ],
   administrador: [

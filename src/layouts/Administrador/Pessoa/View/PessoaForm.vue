@@ -70,6 +70,22 @@
                   v-model="record.cpf"
                 />
               </div>
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+                <q-select
+                  :disable="disable"
+                  :readonly="readonly"
+                  :label="$t('domains.administrador.pessoa.fields.tipoAcesso')"
+                  :options-dense="true"
+                  :separator="true"
+                  :option-value="'value'"
+                  :option-label="'label'"
+                  :emit-value="true"
+                  :map-options="true"
+                  class="select-years"
+                  v-model="record.tipoAcesso"
+                  :options="tiposAcessos"
+                />
+              </div>
             </div>
           </template>
         </app-section>
@@ -101,7 +117,7 @@ import { date } from 'quasar'
 import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaService'
 
 export default {
-  name: 'AlunoForm',
+  name: 'PessoaForm',
   mixins: [form],
   components: {
     AppDate,
@@ -111,7 +127,7 @@ export default {
   },
   data: () => ({
     scope: 'add',
-    name: 'admin-aluno-index',
+    name: 'admin-pessoa-index',
     service: PessoaService.instance(),
     excludeValidation: ['qDateProxy'],
     record: {
@@ -119,7 +135,17 @@ export default {
       nascimento: null,
       cpf: null,
       telefone: null
-    }
+    },
+    tiposAcessos: [
+      {
+        label: 'Usuário',
+        value: 0
+      },
+      {
+        label: 'ADM',
+        value: 1
+      }
+    ]
   }),
   methods: {
     save () {

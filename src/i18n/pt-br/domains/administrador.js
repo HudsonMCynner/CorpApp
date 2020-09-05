@@ -9,7 +9,7 @@ export default {
       subtitle: 'Adicione uma pessoa'
     },
     actions: {
-      salvar: 'Salvar Aluno',
+      salvar: 'Salvar',
       cancelar: 'Cancelar'
     },
     fields: {
@@ -17,7 +17,8 @@ export default {
       nascimento: 'Nascimento *',
       cpf: 'CPF',
       telefone: 'N° Celular *',
-      email: 'E-Mail *'
+      email: 'E-Mail *',
+      tipoAcesso: 'Tipo de Acesso'
     },
     sections: {
       informacoes: 'Dados Básicos',

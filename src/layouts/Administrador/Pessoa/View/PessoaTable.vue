@@ -28,7 +28,7 @@ import $store from 'src/store'
 import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaService'
 
 export default {
-  name: 'AlunoTable',
+  name: 'PessoaTable',
   components: {
     AppTable,
     AppTableCard
@@ -36,7 +36,7 @@ export default {
   mixins: [table],
   data: () => ({
     service: PessoaService.instance(),
-    name: 'admin-aluno-view',
+    name: 'admin-pessoa-view',
     searchable: {
       'usuario.clientes.id': $store.getters['auth/getCliente'].id
     },
