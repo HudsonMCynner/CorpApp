@@ -116,7 +116,6 @@ export default {
       console.log('~> clone', $event)
     },
     moved ($event) {
-      debugger
       console.log('~> move', $event)
       return ($event.draggedContext.element.id !== '1')
     },
@@ -130,7 +129,6 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     movement ($event, situacao) {
-      debugger
       if ($event.added) {
         this.added($event.added.element, situacao)
       }
