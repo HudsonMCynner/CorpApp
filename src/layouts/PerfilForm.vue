@@ -81,7 +81,7 @@
     padding: 15px 15px;">
               <app-camera
                 v-model="avatar"
-                :roudend="false"
+                :roudend="true"
                 @capture="salvarAvatar"
               ></app-camera>
             </div>
@@ -126,6 +126,8 @@
                 :readonly="readonly"
                 :disable="disable"
                 label="Config 1"
+                :ignore-extension="true"
+                @input="salvarCfg($event, 1)"
                 v-model="pessoa.perfil.cfg1"
               ></app-upload>
             </div>
@@ -134,6 +136,8 @@
                 :readonly="readonly"
                 :disable="disable"
                 label="Config 2"
+                :ignore-extension="true"
+                @input="salvarCfg($event, 2)"
                 v-model="pessoa.perfil.cfg2"
               ></app-upload>
             </div>
@@ -141,6 +145,8 @@
               <app-upload
                 :readonly="readonly"
                 :disable="disable"
+                :ignore-extension="true"
+                @input="salvarCfg($event, 3)"
                 label="Config 3"
                 v-model="pessoa.perfil.cfg3"
               ></app-upload>
@@ -226,6 +232,12 @@ export default {
   methods: {
     salvarAvatar ($event) {
       PerfilService.instance().salvarAvatar(this.pessoa.perfil.id, $event)
+        .then((response) => {
+          console.log('~> ', response)
+        })
+    },
+    salvarCfg ($event, numeroCfg) {
+      PerfilService.instance().salvarCfg(this.pessoa.perfil.id, numeroCfg, $event)
         .then((response) => {
           console.log('~> ', response)
         })
