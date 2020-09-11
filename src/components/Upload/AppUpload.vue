@@ -66,6 +66,10 @@ export default {
     defaultMessage: {
       type: Boolean,
       default: false
+    },
+    ignoreExtension: {
+      type: Boolean,
+      default: false
     }
   },
   /**
@@ -148,9 +152,11 @@ export default {
      */
     add (event) {
       if (!this.multiple) {
-        const extension = event[0].type.split('/')
-        if (!extension[1].match(this.format)) {
-          return this.formatError()
+        if (!this.ignoreExtension) {
+          const extension = event[0].type.split('/')
+          if (!extension[1].match(this.format)) {
+            return this.formatError()
+          }
         }
         this.$emit('input', event[0])
       }
