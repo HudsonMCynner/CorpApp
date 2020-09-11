@@ -34,9 +34,18 @@ export default class PerfilService extends Rest {
   /**
    * @returns {Promise}
    */
-  salvarAvatar (idPessoa, file) {
+  salvarAvatar (idPerfil, file) {
     const formData = new FormData()
     formData.append('file', file)
-    return this.post(`/${idPessoa}/avatar/upload`, formData)
+    return this.post(`/${idPerfil}/avatar/upload`, formData)
+  }
+
+  /**
+   * @returns {Promise}
+   */
+  salvarCfg (idPerfil, numeroCfg, file) {
+    const formData = new FormData()
+    formData.append('file', file)
+    return this.post(`/${idPerfil}/${numeroCfg}/upload`, formData)
   }
 }
