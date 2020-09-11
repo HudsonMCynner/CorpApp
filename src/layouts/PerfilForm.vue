@@ -1,39 +1,50 @@
 <template>
-  <div style="padding: 25px; height: 100%;">
-    <q-card style="    border: 1px solid rgb(189, 189, 189);
-    border-radius: 15px;">
-        <q-card-section>
+  <app-form-card
+  :color="'#e53935'"
+  :sub-title="$t('domains.administrador.pessoa.card.subtitle')"
+  :title="$t('domains.administrador.pessoa.card.title')">
+  <template v-slot:form>
+    <div class="column" style="margin-right: 16px">
+      <app-section :title="$t('domains.administrador.pessoa.sections.informacoes')">
+        <template v-slot:form>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 q-pa-sm">
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-                  <q-input
+                  <app-input
                     ref="nome"
                     :readonly="readonly"
                     :disable="disable"
-                    :placeholder="$t('domains.dashboard.pessoa.nome')"
+                    :label="$t('domains.dashboard.pessoa.nome')"
                     v-model="pessoa.nome"
+                    :rules="[
+                      val => !!val || $t('domains.validations.required'),
+                      val => val.length <= 70 || $t('domains.validations.maxLength', { field: 'nome', length: '70' })
+                    ]"
                     outlined
                   >
                     <template v-slot:prepend>
                       <q-icon name="person" />
                     </template>
-                  </q-input>
+                  </app-input>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-                  <q-input
+                  <app-input
                     :readonly="readonly"
                     :disable="disable"
                     ref="cpf"
-                    :placeholder="$t('domains.dashboard.pessoa.cpf')"
+                    :label="$t('domains.dashboard.pessoa.cpf')"
                     v-model="pessoa.cpf"
                     mask="###.###.###-##"
+                    :rules="[
+                      val => !!val || $t('domains.validations.required')
+                    ]"
                     outlined
                   >
                     <template v-slot:prepend>
                       <q-icon name="person" />
                     </template>
-                  </q-input>
+                  </app-input>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
                   <app-date
@@ -46,18 +57,21 @@
                   />
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-                  <q-input
+                  <app-input
                     :readonly="readonly"
                     :disable="disable"
                     ref="email"
-                    :placeholder="$t('domains.dashboard.pessoa.email')"
+                    :label="$t('domains.dashboard.pessoa.email')"
                     v-model="pessoa.email"
+                    :rules="[
+                      val => !!val || $t('domains.validations.required')
+                    ]"
                     outlined
                   >
                     <template v-slot:prepend>
                       <q-icon name="person" />
                     </template>
-                  </q-input>
+                  </app-input>
                 </div>
               </div>
             </div>
@@ -73,66 +87,82 @@
           </div>
           <div class="row q-pa-sm">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-input
+              <app-input
                 :readonly="readonly"
                 :disable="disable"
                 ref="nick"
-                :placeholder="$t('domains.dashboard.perfil.nick')"
+                :label="$t('domains.dashboard.perfil.nick')"
                 v-model="pessoa.perfil.nick"
+                :rules="[
+                  val => !!val || $t('domains.validations.required')
+                ]"
                 outlined
               >
                 <template v-slot:prepend>
                   <q-icon name="person" />
                 </template>
-              </q-input>
+              </app-input>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-input
+              <app-input
                 :readonly="readonly"
                 :disable="disable"
                 ref="steamId"
-                :placeholder="$t('domains.dashboard.perfil.steamId')"
+                :label="$t('domains.dashboard.perfil.steamId')"
                 v-model="pessoa.perfil.steamId"
+                :rules="[
+                  val => !!val || $t('domains.validations.required')
+                ]"
                 outlined
               >
                 <template v-slot:prepend>
                   <q-icon name="person" />
                 </template>
-              </q-input>
+              </app-input>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
-             <app-upload
-               :readonly="readonly"
-               :disable="disable"
-               label="Config 1"
-               v-model="pessoa.perfil.cfg1"
-             ></app-upload>
+              <app-upload
+                :readonly="readonly"
+                :disable="disable"
+                label="Config 1"
+                v-model="pessoa.perfil.cfg1"
+              ></app-upload>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
-             <app-upload
-               :readonly="readonly"
-               :disable="disable"
-               label="Config 2"
-               v-model="pessoa.perfil.cfg2"
-             ></app-upload>
+              <app-upload
+                :readonly="readonly"
+                :disable="disable"
+                label="Config 2"
+                v-model="pessoa.perfil.cfg2"
+              ></app-upload>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 q-pa-sm">
-             <app-upload
-               :readonly="readonly"
-               :disable="disable"
-               label="Config 3"
-               v-model="pessoa.perfil.cfg3"
-             ></app-upload>
+              <app-upload
+                :readonly="readonly"
+                :disable="disable"
+                label="Config 3"
+                v-model="pessoa.perfil.cfg3"
+              ></app-upload>
             </div>
           </div>
-          <div class="row q-pa-sm">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-              <q-btn color="primary" label="Salvar"/>
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
-  </div>
+        </template>
+      </app-section>
+    </div>
+  </template>
+  <template v-slot:actions>
+    <q-btn
+      :label="$t('domains.administrador.pessoa.actions.salvar')"
+      @click="save"
+      icon="save"
+      v-if="scope !== 'view'"
+      style="background: #e53935; color: white"
+    />
+    <q-btn
+      :label="$t('domains.administrador.pessoa.actions.cancelar')"
+      @click="cancel"
+      icon="cancel" />
+  </template>
+</app-form-card>
 </template>
 
 <script>
@@ -140,20 +170,31 @@
 import AppUpload from 'src/components/Upload/AppUpload'
 import { date } from 'quasar'
 import AppCamera from 'src/components/AppCamera'
+import AppFormCard from 'src/components/AppFormCard'
+import AppSection from 'src/components/AppSection'
+import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaService'
+import form from 'src/Mixins/form'
+import AppInput from 'src/components/AppInput'
 export default {
   name: 'PerfilForm',
-  components: { AppCamera, AppUpload },
+  components: { AppInput, AppSection, AppFormCard, AppCamera, AppUpload },
+  mixins: [form],
   created () {
     const usuario = this.$store.getters['auth/getUsuario']
     if (usuario) {
-      this.pessoa = usuario
-      this.readonly = true
-      this.disable = true
+      // this.pessoa = usuario
+      // this.readonly = true
+      // this.disable = true
     }
   },
   data: () => ({
+    scope: 'add',
+    name: 'admin-perfil-view',
     readonly: false,
     disable: false,
+    service: PessoaService.instance(),
+    excludeValidation: ['qDateProxy'],
+    record: {},
     pessoa: {
       nome: '',
       email: '',
