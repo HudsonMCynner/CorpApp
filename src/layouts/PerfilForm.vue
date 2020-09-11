@@ -80,8 +80,9 @@
     align-items: center;
     padding: 15px 15px;">
               <app-camera
-                v-model="pessoa.perfil.foto"
+                v-model="avatar"
                 :roudend="false"
+                @capture="salvarAvatar"
               ></app-camera>
             </div>
           </div>
@@ -175,6 +176,7 @@ import AppSection from 'src/components/AppSection'
 import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaService'
 import form from 'src/Mixins/form'
 import AppInput from 'src/components/AppInput'
+import PerfilService from 'src/layouts/Perfil/Service/PerfilService'
 export default {
   name: 'PerfilForm',
   components: { AppInput, AppSection, AppFormCard, AppCamera, AppUpload },
@@ -182,9 +184,18 @@ export default {
   created () {
     const usuario = this.$store.getters['auth/getUsuario']
     if (usuario) {
-      // this.pessoa = usuario
-      // this.readonly = true
-      // this.disable = true
+      this.service.read(`/${usuario.id}`)
+        .then((response) => {
+          this.pessoa = response
+          // this.readonly = true
+          // this.disable = true
+          if (response.perfil.avatar) {
+            PerfilService.instance().downloadAvatar(response.perfil.id, response.perfil.avatar)
+              .then((avatar) => {
+                this.avatar = `data:image/jpeg;base64,${avatar.file}`
+              })
+          }
+        })
     }
   },
   data: () => ({
@@ -192,6 +203,7 @@ export default {
     name: 'admin-perfil-view',
     readonly: false,
     disable: false,
+    avatar: null,
     service: PessoaService.instance(),
     excludeValidation: ['qDateProxy'],
     record: {},
@@ -212,6 +224,12 @@ export default {
     }
   }),
   methods: {
+    salvarAvatar ($event) {
+      PerfilService.instance().salvarAvatar(this.pessoa.perfil.id, $event)
+        .then((response) => {
+          console.log('~> ', response)
+        })
+    },
     salvar () {
       this.service.save(this.usuario)
     },
