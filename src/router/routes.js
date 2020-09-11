@@ -25,6 +25,10 @@ const routes = [
     component: () => import('layouts/PerfilForm')
   },
   {
+    path: '/tester',
+    component: () => import('layouts/Tester')
+  },
+  {
     path: '/dashboard',
     component: () => import('layouts/MainLayout.vue'),
     children: [
