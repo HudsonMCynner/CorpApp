@@ -127,7 +127,7 @@ export default {
   },
   data: () => ({
     scope: 'add',
-    name: 'admin-pessoa-index',
+    name: 'admin-pessoa-view',
     service: PessoaService.instance(),
     excludeValidation: ['qDateProxy'],
     record: {
