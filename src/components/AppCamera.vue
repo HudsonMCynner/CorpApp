@@ -113,7 +113,7 @@ export default {
       const preview = document.querySelector('#inputPhoto')
       const fileInput = document.querySelector('#inputFile')
       const file = fileInput.files[0]
-      if (this.verifyValidTypeFile(file) && this.verifyValidSizeFile(file)) {
+      if (this.verifyValidTypeFile(file)) {
         const options = {
           maxSizeMB: 1024, // (default: Number.POSITIVE_INFINITY)
           maxWidthOrHeight: 600, // compressedFile will scale down by ratio to a point that width or height is smaller than maxWidthOrHeight (default: undefined)
@@ -131,6 +131,7 @@ export default {
               this.readFile(preview, newFile)
               return
             }
+            this.loadingImage = false
             this.$emit('error', {
               type: 'fileSizeError',
               message: 'domains.dashboard.components.appCamera.messages.arquivoGrande'
@@ -142,6 +143,7 @@ export default {
           })
         return
       }
+      this.loadingImage = false
       this.$emit('error', {
         type: 'fileTypeError',
         message: this.$t('domains.dashboard.components.appCamera.messages.arquivosPermitidos')
@@ -152,9 +154,10 @@ export default {
     readFile (preview, file) {
       const reader = new FileReader()
       const $this = this
-      this.sendFile(file)
       reader.onload = function (e) {
+        $this.file = $this.processarImagem(e.target.result, 'capture.jpeg')
         $this.image = e.target.result
+        $this.sendFile($this.file)
       }
       reader.readAsDataURL(file)
     },
