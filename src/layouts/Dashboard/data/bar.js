@@ -1,30 +1,36 @@
 export default function getData () {
   return {
-    legend: {},
-    tooltip: {},
-    dataset: {
-      // Provide data.
-      source: [
-        ['Product', '2015', '2016', '2017'],
-        ['Matcha Latte', ...randomize()],
-        ['Milk Tea', ...randomize()],
-        ['Cheese Cocoa', ...randomize()],
-        ['Walnut Brownie', ...randomize()]
-      ]
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
-    // Declare X axis, which is a category axis, mapping
-    // to the first column by default.
-    xAxis: { type: 'category' },
-    // Declare Y axis, which is a value axis.
-    yAxis: {},
-    // Declare several series, each of them mapped to a
-    // column of the dataset by default.
-    series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      name: 'Forest',
+      type: 'bar',
+      barGap: 0,
+      label: 'a',
+      data: [320, 332, 301, 334, 390]
+    },
+    {
+      name: 'Steppe',
+      type: 'bar',
+      label: 'b',
+      data: [220, 182, 191, 234, 290]
+    },
+    {
+      name: 'Desert',
+      type: 'bar',
+      label: 'c',
+      data: [150, 232, 201, 154, 190]
+    },
+    {
+      name: 'Wetland',
+      type: 'bar',
+      label: 'df',
+      data: [98, 77, 101, 99, 40]
+    }]
   }
-}
-
-function randomize () {
-  return [0, 0, 0].map(v => {
-    return Math.round(300 + Math.random() * 700) / 10
-  })
 }

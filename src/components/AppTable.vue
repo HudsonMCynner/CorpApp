@@ -59,7 +59,8 @@
               :key="col.name"
               :props="props"
             >
-              {{ col.value }}
+              <div v-if="col.html" v-html="col.value"/>
+              <div v-else>{{ col.value }}</div>
             </q-td>
             <q-td class="table-actions" v-if="dataRowAction.enable">
               <template v-for="(action, index) in dataRowAction.actions">
