@@ -247,8 +247,53 @@ export default {
     left 0
     height 100%
 .progress
-  color: white;
-  float: right;
+  color: #fff;
   margin: 0 5px;
   font-weight: bolder;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+
+.os-progress-bar--meter
+  -webkit-animation: progress 0.7s linear infinite
+  -moz-animation: progress 0.7s linear infinite
+  animation: progress 0.7s linear infinite
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+  background-color: #f58220
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%)
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%)
+  background-size: 2.5em 2.5em
+  background-repeat: repeat-x
+  border: 1px solid #c05d09
+  border-radius: 0.2083333333em
+  display: block
+  height: 100%
+
+@-webkit-keyframes progress {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 2.5em 0px;
+  }
+}
+@-moz-keyframes progress {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 2.5em 0px;
+  }
+}
+@keyframes progress {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 2.5em 0px;
+  }
+}
 </style>
