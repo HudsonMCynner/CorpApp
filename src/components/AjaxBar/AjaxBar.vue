@@ -180,7 +180,7 @@ export default {
         this.animate = true
         this.progress = 100
         this.timer = setTimeout(() => {
-          this.onScreen = true
+          this.onScreen = false
         }, 1000)
       }
 
