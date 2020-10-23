@@ -1,5 +1,6 @@
 <template>
   <main style="background: white">
+    <ajax-bar size="50px" :reverse="true"/>
     <section>
       <figure>
         <chart
@@ -72,11 +73,17 @@ import getLine from './data/line'
 import pie from './data/pie'
 // custom theme
 import theme from './theme.json'
+import PessoaService from 'layouts/Administrador/Pessoa/Service/PessoaService'
 ECharts.registerTheme('ovilia-green', theme)
+import AjaxBar from 'components/AjaxBar/AjaxBar'
 
 export default {
   components: {
-    chart: ECharts
+    chart: ECharts,
+    AjaxBar
+  },
+  created () {
+    PessoaService.build().get('')
   },
   data () {
     const options = qs.parse(location.search, { ignoreQueryPrefix: true })

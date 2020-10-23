@@ -1,6 +1,6 @@
 <template>
   <div class="q-loading-bar" :class="classes" :style="style">
-    <span class="progress">{{ progress }}%</span>
+    <span class="progress">{{ progress.toFixed(2) }}%</span>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ function translate ({ p, pos, active, horiz, reverse, dir }) {
   return { transform: `translate3d(${active ? 0 : dir * x * -200}%,${y * (p - 100)}%,0)` }
 }
 function inc (p, amount) {
-  debugger
+  console.log('~> ', p, amount)
   if (typeof amount !== 'number') {
     if (p < 25) {
       amount = Math.random() * 3 + 3
@@ -76,10 +76,11 @@ function restoreAjax (start, stop) {
   highjackCount = Math.max(0, highjackCount - 1)
   if (!highjackCount) {
     xhr.prototype.send = send
+    console.log('~> ', highjackCount)
   }
 }
 export default {
-  name: 'QAjaxBar',
+  name: 'AjaxBar',
   props: {
     position: {
       type: String,
@@ -90,15 +91,15 @@ export default {
     },
     size: {
       type: String,
-      default: '20px'
-    },
-    dirRtl: {
-      type: Boolean,
-      default: false
+      default: '2px'
     },
     color: {
       type: String,
       default: 'blue'
+    },
+    updateSpeed: {
+      type: Number,
+      default: 300
     },
     skipHijack: Boolean,
     reverse: Boolean
@@ -114,7 +115,7 @@ export default {
   computed: {
     classes () {
       return [
-        `q-loading-bar--${this.position}`,
+        `loading-bar-on-${this.position}`,
         `bg-${this.color}`,
         this.animate ? '' : 'no-transition'
       ]
@@ -129,8 +130,7 @@ export default {
         horiz: this.horizontal,
         reverse: ['top', 'bottom'].includes(this.position)
           ? this.reverse
-          : !this.reverse,
-        dir: this.dirRtl ? -1 : 1
+          : !this.reverse
       })
 
       o[this.sizeProp] = this.size
@@ -147,7 +147,7 @@ export default {
   },
 
   methods: {
-    start (speed = 300) {
+    start (speed = this.updateSpeed) {
       this.calls++
       if (this.calls > 1) { return }
 
@@ -220,28 +220,28 @@ export default {
   rel="stylesheet/stylus"
   scoped
 >
-.q-loading-bar
+.loading-bar
   position fixed
   z-index $z-max
   transition transform .5s cubic-bezier(0, 0, .2, 1), opacity .5s
 
-  &--top
+  &-on-top
     left 0 /* rtl:ignore */
     right 0 /* rtl:ignore */
     top 0
     width 100%
-  &--bottom
+  &-on-bottom
     left 0 /* rtl:ignore */
     right 0 /* rtl:ignore */
     bottom 0
     width 100%
 
-  &--right
+  &-on-right
     top 0
     bottom 0
     right 0
     height 100%
-  &--left
+  &-on-left
     top 0
     bottom 0
     left 0

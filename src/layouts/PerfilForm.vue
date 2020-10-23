@@ -7,6 +7,7 @@
     <div class="column" style="margin-right: 16px">
       <app-section :title="$t('domains.administrador.pessoa.sections.informacoes')">
         <template v-slot:form>
+          <ajax-bar size="50px" />
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 q-pa-sm">
               <div class="row">
@@ -81,7 +82,7 @@
     padding: 15px 15px;">
               <app-camera
                 v-model="avatar"
-                :roudend="true"
+                :roudend="false"
                 @capture="salvarAvatar"
               ></app-camera>
             </div>
@@ -183,9 +184,10 @@ import PessoaService from 'src/layouts/Administrador/Pessoa/Service/PessoaServic
 import form from 'src/Mixins/form'
 import AppInput from 'src/components/AppInput'
 import PerfilService from 'src/layouts/Perfil/Service/PerfilService'
+import AjaxBar from 'components/AjaxBar/AjaxBar'
 export default {
   name: 'PerfilForm',
-  components: { AppInput, AppSection, AppFormCard, AppCamera, AppUpload },
+  components: { AjaxBar, AppInput, AppSection, AppFormCard, AppCamera, AppUpload },
   mixins: [form],
   created () {
     const usuario = this.$store.getters['auth/getUsuario']

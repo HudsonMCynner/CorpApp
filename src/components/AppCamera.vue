@@ -127,8 +127,8 @@ export default {
               newFile.name = file.name
             }
             fileInput.value = null
-            if (this.verifyValidSizeFile(newFile)) {
-              this.readFile(preview, newFile)
+            if (this.verifyValidSizeFile(file)) {
+              this.readFile(preview, file)
               return
             }
             this.loadingImage = false
@@ -173,7 +173,8 @@ export default {
      * @return {Boolean}
      */
     verifyValidSizeFile (file) {
-      return file.size <= 5242880
+      // return file.size <= 5242880
+      return true
     },
     /**
      * @param file
