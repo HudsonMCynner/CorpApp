@@ -34,7 +34,7 @@
               </q-input>
             </div>
             <div class="actions">
-              <q-btn color="primary" label="Acessar" @click="entrar"/>
+              <q-btn color="primary" label="Acessar" id="acessar" @click="entrar"/>
               <q-btn color="primary" label="Caadastrar" @click="cadastrar"/>
             </div>
           </div>
